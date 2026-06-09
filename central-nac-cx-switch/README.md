@@ -290,7 +290,8 @@ When Central NAC is unavailable for any reason, network access may be impacted. 
 Several options are available, with the most comprehensive being the ***Cached Critical Role*** feature.
 This feature allows previously authenticated clients to be authorized using their last assigned roles when the RADIUS server (Central NAC) is unreachable.
 
-> [!TIP] A detailed explanation about this feature can be found in the documentation and Airheads Broadcasting Channel:
+> [!TIP]
+> A detailed explanation about this feature can be found in the documentation and Airheads Broadcasting Channel:
 >
 > * [AOS-CX Documentation](https://arubanetworking.hpe.com/techdocs/AOS-CX/10.17/HTML/security_5420-6200-6300-6400/Content/Chp_Port_acc/spe-cac-cri-rol.htm?Highlight=cached%20role)
 > * [Airheads Broadcasting Channel - Cached Critical Role](https://www.youtube.com/watch?v=IpHBo1BQOCU)
