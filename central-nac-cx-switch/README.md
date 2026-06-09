@@ -1,6 +1,6 @@
 # Configure Aruba CX switches for Central NAC
 
-![Central NAC](https://img.shields.io/badge/HPE%20Aruba%20Central%20NAC-required-FF6600) ![Central NAC](https://img.shields.io/badge/HPE%20Aruba%20CX-required-FF6600) ![Read Time](https://img.shields.io/badge/ReadTime-10%20min-01A982)
+![Central NAC](https://img.shields.io/badge/HPE%20Aruba%20Central%20NAC-required-FF6600) ![Central NAC](https://img.shields.io/badge/HPE%20Aruba%20CX-required-FF6600) ![Read Time](https://img.shields.io/badge/ReadTime-11%20min-01A982)
 
 ## Table of contents
 
