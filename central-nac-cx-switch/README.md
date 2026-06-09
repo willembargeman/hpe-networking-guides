@@ -13,6 +13,7 @@
   * [Configure Port Profile](#configure-port-profile)
   * [Apply Port Profile to a switch interface](#apply-port-profile-to-a-switch-interface)
   * [Configure a Role](#configure-a-role)
+  * [Optional - configure survivability](#optional---configure-survivability)
 * [Central NAC configuration](#central-nac-configuration)
   * [Configure Authentication Profile for MAC Authentication](#configure-authentication-profile-for-mac-authentication)
   * [Configure the Authorization Policy](#configure-the-authorization-policy)
@@ -29,9 +30,9 @@ In this example, an Aruba CX-6300 switch is used. The same steps apply to any ot
 
 > [!NOTE]
 > This is not a full how-to; it focuses only on the AOS-CX switch configuration and some basic Central NAC configuration. For more information, refer to the following resources:
-
-* <https://arubanetworking.hpe.com/techdocs/NAC/central-nac/>
-* <https://arubanetworking.hpe.com/techdocs/new-central/content/nac/nac-overview.htm>
+>
+> * <https://arubanetworking.hpe.com/techdocs/NAC/central-nac/>
+> * <https://arubanetworking.hpe.com/techdocs/new-central/content/nac/nac-overview.htm>
 
 ## Prerequisites
 
@@ -69,9 +70,9 @@ flowchart LR
 
 > [!NOTE]
 > This configuration guide only shows how to created the profiles. Details on how and where to apply the profiles in the scope are not configured.
-
-For information about the configuration model within Aruba Central consult the HPE Networking VSG page:
-<https://arubanetworking.hpe.com/techdocs/VSG/docs/002-central/central-020-config-model/>
+>
+> For information about the configuration model within Aruba Central consult the HPE Networking VSG page:
+> <https://arubanetworking.hpe.com/techdocs/VSG/docs/002-central/central-020-config-model/>
 
 ## Switch configuration
 
@@ -154,7 +155,7 @@ Configure the profile with the following information.
 | **MAC Authentication Server Group** | Central NAC |
 
 > [!TIP]
-> Aruba CX concurrent onboarding accelerates device connectivity by running 802.1X and MAC authentication in parallel instead of sequentially, reducing connection delays due to waiting on 802.1X.
+> AOS-CX concurrent onboarding accelerates device connectivity by running 802.1X and MAC authentication in parallel instead of sequentially, reducing connection delays due to waiting on 802.1X.
 > Change the Authentication Protocol to any other method if you don't want to use the concurrent method.
 
 <img src="./screenshots/security-aaa.png" alt="Switch System AAA configuration" width="40%">
@@ -281,6 +282,52 @@ port-access role employee
     auth-mode client-mode                                      
     stp-admin-edge-port 
     vlan access 1
+```
+
+### Optional - configure survivability
+
+When Central NAC is unavailable for any reason, network access may be impacted. In AOS-CX, authentication survivability features can be configured to mitigate this.
+Several options are available, with the most comprehensive being the ***Cached Critical Role*** feature.
+This feature allows previously authenticated clients to be authorized using their last assigned roles when the RADIUS server (Central NAC) is unreachable.
+
+> [!TIP] A detailed explanation about this feature can be found in the documentation and Airheads Broadcasting Channel:
+>
+> * [AOS-CX Documentation](https://arubanetworking.hpe.com/techdocs/AOS-CX/10.17/HTML/security_5420-6200-6300-6400/Content/Chp_Port_acc/spe-cac-cri-rol.htm?Highlight=cached%20role)
+> * [Airheads Broadcasting Channel - Cached Critical Role](https://www.youtube.com/watch?v=IpHBo1BQOCU)
+> * [Airheads Broadcasting Channel - Cached Critical Role Persistent Storage](https://www.youtube.com/watch?v=4iT2rLVhuS4)
+
+#### Update the Switch System Profile for Authentication Survivability
+
+Navigate to:
+
+```text
+Aruba Central → Configuration → System → Switch System
+```
+
+Update the previously created Switch System Profile.
+Configure the profile with the following information.
+
+#### Auth Survivability section
+
+| Parameter | Value |
+| --- | --- |
+| **Enable Cached Critical Role** | ✓ |
+| **Persistent Storage Enable** | ✓ |
+
+> [!NOTE]
+> The *Cache Timeout* is default set to 96 hours.
+
+<img src="./screenshots/switch-system-auth-survivability.png" alt="Switch System Auth Survivability configuration" width="50%">
+
+#### Auth Survivability Configuration Push
+
+The following configuration will be pushed to the switch. You can validate this in the *Aruba Central Audit Trail* or on the switch CLI.
+
+```text
+aaa authentication port-access cached-critical-role
+    enable 
+    persistent-storage
+        enable
 ```
 
 ## Central NAC configuration
