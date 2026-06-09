@@ -153,12 +153,11 @@ Configure the profile with the following information.
 | **802.1X Authentication Server Group** | Central NAC |
 | **MAC Authentication Server Group** | Central NAC |
 
-:::note
-Aruba CX concurrent onboarding accelerates device connectivity by running 802.1X and MAC authentication in parallel instead of sequentially, reducing connection delays due to waiting on 802.1X.
-Change the Authentication Protocol to any other method if you don't want to use the concurrent method.
-:::
+> [!TIP]
+> Aruba CX concurrent onboarding accelerates device connectivity by running 802.1X and MAC authentication in parallel instead of sequentially, reducing connection delays due to waiting on 802.1X.
+> Change the Authentication Protocol to any other method if you don't want to use the concurrent method.
 
-<img src="./screenshots/security-aaa.png" alt="Switch System AAA configuration" width="50%">
+<img src="./screenshots/security-aaa.png" alt="Switch System AAA configuration" width="40%">
 
 ### Configure Port Profile
 
@@ -312,7 +311,7 @@ Create a new Profile for MAC Authentication. Configure the profile with the foll
 When enabled, all clients are permitted to authenticate, and successfully authenticated MAC addresses are automatically added to the MAC address store.
 Authentication success still depends on the configured authorization policies.
 
-<img src="./screenshots/centralnac-authentication-profile-mac.png" alt="Central NAC Wired MAC Authentication Profile" width="50%">
+<img src="./screenshots/centralnac-authentication-profile-mac.png" alt="Central NAC Wired MAC Authentication Profile" width="40%">
 
 ### Configure the Authorization Policy
 
