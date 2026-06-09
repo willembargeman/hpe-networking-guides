@@ -69,7 +69,7 @@ flowchart LR
     Apply the port profile to one or more switch interfaces
 
 > [!NOTE]
-> This configuration guide only shows how to created the profiles. Details on how and where to apply the profiles in the scope are not configured.
+> This configuration guide only shows how to created the profiles. Details on how and where to apply the profiles in the scope are not explained.
 >
 > For information about the configuration model within Aruba Central consult the HPE Networking VSG page:
 > <https://arubanetworking.hpe.com/techdocs/VSG/docs/002-central/central-020-config-model/>
@@ -132,7 +132,7 @@ aaa authentication port-access mac-auth
 !
 ```
 
-> [!TIP]
+> [!NOTE]
 > The RADIUS server FQDN depends on the region where Aruba Central is deployed.
 
 ### Configure AAA Profile
