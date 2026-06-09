@@ -27,8 +27,8 @@ This how-to explains how to configure Aruba CX switches to connect to Central NA
 
 In this example, an Aruba CX-6300 switch is used. The same steps apply to any other CX platform that supports 802.1x and MAC authentication.
 
-[!NOTE]
-This is not a full how-to; it focuses only on the AOS-CX switch configuration and some basic Central NAC configuration. For more information, refer to the following resources:
+> [!NOTE]
+> This is not a full how-to; it focuses only on the AOS-CX switch configuration and some basic Central NAC configuration. For more information, refer to the following resources:
 
 * <https://arubanetworking.hpe.com/techdocs/NAC/central-nac/>
 * <https://arubanetworking.hpe.com/techdocs/new-central/content/nac/nac-overview.htm>
@@ -67,8 +67,8 @@ flowchart LR
 
     Apply the port profile to one or more switch interfaces
 
-[!NOTE]
-This configuration guide only shows how to created the profiles. Details on how and where to apply the profiles in the scope are not configured.
+> [!NOTE]
+> This configuration guide only shows how to created the profiles. Details on how and where to apply the profiles in the scope are not configured.
 
 For information about the configuration model within Aruba Central consult the HPE Networking VSG page:
 <https://arubanetworking.hpe.com/techdocs/VSG/docs/002-central/central-020-config-model/>
@@ -131,8 +131,8 @@ aaa authentication port-access mac-auth
 !
 ```
 
-[!TIP]
-The RADIUS server FQDN depends on the region where Aruba Central is deployed.
+> [!TIP]
+> The RADIUS server FQDN depends on the region where Aruba Central is deployed.
 
 ### Configure AAA Profile
 
@@ -184,8 +184,8 @@ Configure the profile with the following information.
 
 <img src="./screenshots/interfaces-port-profile.png" alt="Switch System AAA configuration" width="100%">
 
-[!NOTE]
-The screenshot above illustrates the Port Profile configuration. Besides the security configuration, it also includes loop prevention settings.
+> [!NOTE]
+> The screenshot above illustrates the Port Profile configuration. Besides the security configuration, it also includes loop prevention settings.
 While these are not mandatory for Central NAC, it is considered best practice to enable them.
 
 ### Apply Port Profile to a switch interface
@@ -268,8 +268,8 @@ Configure the Role with the following information.
 | **Access VLAN** | 1 |
 | **Admin Edge Port** | ✓ |
 
-!TIP]
-The ***Always Download Role*** knob downloads the role to the switch even if it has no policy or isn't referenced in the configuration. If not enabled the Role needs to be referenced in security policy.
+> [!TIP]
+> The ***Always Download Role*** knob downloads the role to the switch even if it has no policy or isn't referenced in the configuration. If not enabled the Role needs to be referenced in security policy.
 
 <img src="./screenshots/roles-employee.png" alt="Employee Role example" width="50%">
 
@@ -307,8 +307,8 @@ Create a new Profile for MAC Authentication. Configure the profile with the foll
 | **Use for wired connection** | ✓ |
 | **Allow all MAC Addresses** | ✓ |
 
-!TIP]
-The ***Allow all MAC Addresses*** option is optional.
+> [!TIP]
+> The ***Allow all MAC Addresses*** option is optional.
 When enabled, all clients are permitted to authenticate, and successfully authenticated MAC addresses are automatically added to the MAC address store.
 Authentication success still depends on the configured authorization policies.
 
@@ -348,8 +348,8 @@ Add a new Rule to the created Authorization Policy. Configure the Rule with the 
 | **Actions** | Allow Access |
 | **Role** | employee |
 
-!INFO]
-This rule does not include any conditions and therefore acts as an allow-all rule.
+> [!NOTE]
+> This rule does not include any conditions and therefore acts as an allow-all rule.
 
 <img src="./screenshots/centralnac-authorization-policy.png" alt="Central NAC Wired MAC Authentication Profile" width="100%">
 
