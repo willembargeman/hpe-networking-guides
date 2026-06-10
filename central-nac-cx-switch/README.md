@@ -26,7 +26,7 @@
 
 This how-to explains how to configure Aruba CX switches to connect to Central NAC.
 
-In this example, an Aruba CX-6300 switch is used. The same steps apply to any other CX platform that supports 802.1x and MAC authentication.
+In this example, an Aruba CX-6300 switch is used. The same steps apply to any other CX platform that supports 802.1X and MAC authentication.
 
 > [!NOTE]
 > This is not a full how-to; it focuses only on the AOS-CX switch configuration and some basic Central NAC configuration. For more information, refer to the following resources:
@@ -54,7 +54,7 @@ flowchart LR
 
 1. System > Switch System
 
-    Configures global switch configuration including 802.1x/MAC
+    Configures global switch configuration including 802.1X/MAC
 
 2. Security > AAA profile
 
@@ -127,6 +127,7 @@ aaa authentication port-access dot1x authenticator
     radius server-group sys_central_nac
 !
 aaa authentication port-access mac-auth
+    radius server-group sys_central_nac
     enable
     auth-method pap
 !
@@ -144,7 +145,10 @@ Aruba Central → Configuration → Security → AAA Authentication
 ```
 
 Create a new AAA Authentication Profile (or edit an existing one) and assign the profile to the right *scope* and *Device Function*.
-This AAA profile is intended for use within a Port Profile. Assigning the profile alone does not trigger any configuration changes on the switch; changes occur only when it is applied through a Port Profile.
+This AAA profile is intended for use within a Port Profile.
+
+Assigning the profile alone applies only general AAA and certificate configurations to the switch.
+Full configuration is applied only when the profile is referenced in a Port Profile.
 
 Configure the profile with the following information.
 
@@ -159,6 +163,22 @@ Configure the profile with the following information.
 > Change the Authentication Protocol to any other method if you don't want to use the concurrent method.
 
 <img src="./screenshots/security-aaa.png" alt="Switch System AAA configuration" width="40%">
+
+#### Configuration Push AAA Profile
+
+The following configuration will be pushed to the switch. You can validate this in the *Aruba Central Audit Trail* or on the switch CLI.
+
+**Reminder**: Assigning the profile alone applies only general AAA and certificate configurations to the switch.
+Full configuration is applied only when the profile is referenced in a Port Profile.
+
+```text
+radius dyn-authorization enable
+crypto pki ta-profile sys_central_nac
+ta-certificate
+[REDACTED_CERTIFICATE]
+crypto pki certificate device-identity
+crypto pki application radsec-client certificate device-identity
+```
 
 ### Configure Port Profile
 
