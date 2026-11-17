@@ -14,6 +14,7 @@
   * [Apply Port Profile to a switch interface](#apply-port-profile-to-a-switch-interface)
   * [Configure a Role](#configure-a-role)
   * [Optional - configure survivability](#optional---configure-survivability)
+    * [Update the Switch System Profile for Authentication Survivability](#update-the-switch-system-profile-for-authentication-survivability)
 * [Central NAC configuration](#central-nac-configuration)
   * [Configure Authentication Profile for MAC Authentication](#configure-authentication-profile-for-mac-authentication)
   * [Configure the Authorization Policy](#configure-the-authorization-policy)
@@ -46,10 +47,10 @@ The configuration consists of creating or updating the following profiles in Cen
 
 ```mermaid
 flowchart LR
-    A[**System > Switch System**<br/>Enable 802.1X / MAC auth]
-    A --> B[**Security > AAA profile**<br/>Set RADIUS / RadSec auth]
-    B --> C[**Interfaces > Port profile**<br/>Attach AAA profile]
-    C --> D[**Switch > Interfaces**<br/>Apply port profile to ports]
+    A[<b>System > Switch System</b><br/>Enable 802.1X / MAC auth]
+    A --> B[<b>Security > AAA profile</b><br/>Set RADIUS / RadSec auth]
+    B --> C[<b>Interfaces > Port profile</b><br/>Attach AAA profile]
+    C --> D[<b>Switch > Interfaces</b><br/>Apply port profile to ports]
 ```
 
 1. System > Switch System
